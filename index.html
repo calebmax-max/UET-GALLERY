@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UET Gallery</title>
+<meta name="description" content="Photos from UET, 10 October 2026. Tap any photo to view it full size or download it.">
+<meta property="og:title" content="UET Gallery">
+<meta property="og:description" content="Photos from UET, 10 October 2026.">
+<meta property="og:type" content="website">
+<!-- Add: <meta property="og:image" content="https://YOUR-SITE/gallery/thumbs/photo-001.webp"> -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📷</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script src="gallery.js" defer></script>
+</head>
+<body>
+<nav class="bar" id="bar" aria-label="Main">
+  <a class="brand" href="#top"><span class="dot"></span>UET Gallery</a>
+  <div class="links">
+    <a href="#">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <span class="progress" id="progress"></span>
+</nav>
+
+<header class="top" id="top">
+  <h1 id="hero" class="hero">UET Gallery</h1>
+  <p id="sub">Tap a photo to view it full size, or download a copy.</p>
+</header>
+
+<main>
+  <nav id="albumHead" class="albumhead" aria-label="Album" hidden>
+    <a class="back" href="#">&larr; All albums</a>
+    <h2 id="albumTitle" tabindex="-1"></h2>
+    <span id="albumCount"></span>
+  </nav>
+  <div id="albums" class="albums" hidden></div>
+  <div id="grid" class="grid" aria-label="Photos"></div>
+  <p id="status" class="status" role="status">Loading photos…</p>
+</main>
+
+<footer class="foot" id="contact">© <span id="year"></span> UET. All rights reserved.</footer>
+
+<dialog id="lightbox" aria-label="Photo viewer">
+  <div class="lb">
+    <div class="lb-bar">
+      <span class="lb-title" id="lbTitle"></span>
+      <span class="lb-count" id="lbCount" aria-live="polite"></span>
+      <button class="btn" id="lbShare" hidden>Share</button>
+      <a class="btn primary" id="lbDownload" download>Download</a>
+      <button class="btn" id="lbClose" aria-label="Close viewer">Close</button>
+    </div>
+    <div class="stage" id="stage">
+      <button class="nav prev" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+      <div class="spinner" id="lbSpin" hidden></div>
+      <img id="lbImg" alt="">
+      <p class="lb-error" id="lbErr" hidden>This photo could not be loaded.</p>
+      <button class="nav next" id="lbNext" aria-label="Next photo">&#8250;</button>
+    </div>
+  </div>
+</dialog>
+</body>
+</html>
