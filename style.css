@@ -98,14 +98,14 @@ dialog::backdrop{background:transparent}
 
 /* Album landing page */
 [hidden]{display:none!important}
-.albums{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
-.acard{display:flex;flex-direction:column;gap:6px;padding:8px;border:1px solid var(--line);border-radius:10px;
+.albums{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.acard{display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:14px;
   background:var(--surface);color:var(--ink);text-decoration:none;transition:transform .2s,box-shadow .2s}
 .acard:hover,.acard:focus-visible{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
-.ameta{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
-.atitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-size:.85rem;max-width:100%}
-.acount{flex:none;padding:1px 7px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.7rem}
-.acard img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;background:var(--ph);opacity:0;transition:opacity .3s}
+.ameta{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.atitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-size:1.1rem}
+.acount{flex:none;padding:3px 10px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.85rem}
+.acard img{display:block;width:100%;aspect-ratio:8/3;object-fit:cover;border-radius:8px;background:var(--ph);opacity:0;transition:opacity .3s}
 .acard img.ready{opacity:1}
 .albumhead{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px}
 .albumhead h2{margin:0;font-size:1.5rem;outline:none}
@@ -113,4 +113,4 @@ dialog::backdrop{background:transparent}
 .back{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
   color:var(--ink);text-decoration:none;font-weight:600}
 .back:hover{border-color:var(--accent)}
-@media (max-width:600px){.albums{grid-template-columns:repeat(3,1fr);gap:8px}.acard{padding:6px}}
+@media (max-width:600px){.albums{grid-template-columns:repeat(2,1fr);gap:12px}.acard{padding:10px}}
