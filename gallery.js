@@ -94,7 +94,7 @@
   }
 
   /* ---------- Masonry that keeps left-to-right order ---------- */
-  const colCount = () => { const w = grid.clientWidth; return w < 600 ? 2 : w < 900 ? 3 : w < 1200 ? 4 : 5; };
+  const colCount = () => { const w = grid.clientWidth; return w < 600 ? 2 : w < 900 ? 3 : w < 1200 ? 4 : w < 1400 ? 5 : 6; };
   const base = (p) => decodeURIComponent(p.split("/").pop());
 
   function render(force) {

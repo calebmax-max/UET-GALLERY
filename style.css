@@ -1,6 +1,7 @@
 :root{
   --bg:#eef1ef; --surface:#fff; --ink:#14201b; --muted:#5a6962;
   --accent:#0b6b3a; --accent-ink:#fff; --line:#d5dbd8; --ph:#dfe5e2;
+  --maxw:1280px;
   color-scheme:light dark;
 }
 @media (prefers-color-scheme:dark){
@@ -10,10 +11,10 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;height:100%;scroll-padding-top:72px}
 body{margin:0;min-height:100%;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);
-  font:16px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
-  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+  font:1rem/1.5 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 body:has(dialog[open]){overflow:hidden}
-.top,main,.foot{width:100%;max-width:1280px;margin:0 auto;padding-inline:24px}
+.top,main,.foot{width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:24px}
 .top{padding-top:40px;padding-bottom:20px}
 h1{margin:0 0 8px;font-size:clamp(2rem,5vw,3.25rem);line-height:1.1;letter-spacing:-.02em}
 .top p{margin:0;color:var(--muted)}
@@ -38,10 +39,10 @@ main{flex:1;padding-bottom:56px}
 .foot{padding-block:24px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
 /* Animated nav bar */
 .bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
-  padding:20px 24px;background:color-mix(in srgb,var(--bg) 78%,transparent);
+  padding:calc(20px + env(safe-area-inset-top)) max(24px,calc((100% - var(--maxw))/2)) 20px;background:color-mix(in srgb,var(--bg) 78%,transparent);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
   border-bottom:1px solid transparent;transition:padding .25s,transform .3s,border-color .25s}
-.bar.small{padding-block:10px;border-color:var(--line)}
+.bar.small{padding-top:calc(10px + env(safe-area-inset-top));padding-bottom:10px;border-color:var(--line)}
 .bar.hide{transform:translateY(-100%)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none}
 .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
@@ -59,14 +60,14 @@ main{flex:1;padding-bottom:56px}
 
 a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 
-dialog{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;
+dialog{width:100%;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;
   background:rgba(8,14,11,.96);color:#fff}
 dialog::backdrop{background:transparent}
 .lb{display:grid;grid-template-rows:auto 1fr;height:100%}
-.lb-bar{display:flex;align-items:center;gap:10px;padding:12px 16px}
+.lb-bar{display:flex;align-items:center;gap:10px;padding:max(12px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left))}
 .lb-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
 .lb-count{color:#b8c5be;font-size:.9rem}
-.btn{padding:9px 14px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:none;color:#fff;
+.btn{min-height:40px;padding:9px 14px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:none;color:#fff;
   font:600 .9rem/1 inherit;font-family:inherit;text-decoration:none;cursor:pointer}
 .btn.primary{background:#3fbf7a;border-color:#3fbf7a;color:#06150d}
 .stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:0;padding:0 64px 24px}
@@ -86,8 +87,8 @@ dialog::backdrop{background:transparent}
   .brand{font-size:1.1rem}
   .links{gap:16px;font-size:.95rem}
   .grid,.col{gap:10px}
-  .stage{padding:0 8px 72px}
-  .nav{top:auto;bottom:16px;transform:none}
+  .stage{padding:0 8px calc(72px + env(safe-area-inset-bottom))}
+  .nav{top:auto;bottom:calc(16px + env(safe-area-inset-bottom));transform:none}
   .prev{left:16px}.next{right:16px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -105,12 +106,45 @@ dialog::backdrop{background:transparent}
 .ameta{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .atitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-size:1.1rem}
 .acount{flex:none;padding:3px 10px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.85rem}
-.acard img{display:block;width:100%;aspect-ratio:8/3;object-fit:cover;border-radius:8px;background:var(--ph);opacity:0;transition:opacity .3s}
+.acard img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:var(--ph);opacity:0;transition:opacity .3s}
 .acard img.ready{opacity:1}
 .albumhead{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px}
 .albumhead h2{margin:0;font-size:1.5rem;outline:none}
 #albumCount{color:var(--muted)}
-.back{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
+.back{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
   color:var(--ink);text-decoration:none;font-weight:600}
 .back:hover{border-color:var(--accent)}
 @media (max-width:600px){.albums{grid-template-columns:repeat(2,1fr);gap:12px}.acard{padding:10px}}
+
+/* Responsive extras */
+@media (max-width:480px){
+  .lb-bar{gap:6px;padding-inline:12px}
+  .btn{padding:8px 10px;font-size:.8rem}
+  .nav{width:44px;height:44px}
+}
+@media (max-height:480px) and (orientation:landscape){
+  .top{padding-top:16px;padding-bottom:12px}
+  .lb-bar{padding-block:6px}
+  .stage{padding-bottom:12px}
+}
+@media (min-width:1800px){:root{--maxw:1500px}html{font-size:18px}}
+
+/* Square album tiles: cover fills the whole tile, title and count on top */
+.acard{position:relative;aspect-ratio:1/1;padding:0;gap:0;overflow:hidden;border:0;background:var(--ph)}
+.acard img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;border-radius:0;transition:opacity .3s,transform .4s}
+.acard:hover img,.acard:focus-visible img{transform:scale(1.05)}
+.ameta{position:absolute;top:0;left:0;right:0;z-index:1;padding:12px;color:#fff;
+  background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,0))}
+.atitle{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.acount{background:rgba(255,255,255,.22);color:#fff}
+@media (max-width:600px){.ameta{padding:8px}.atitle{font-size:.95rem}}
+
+/* Heading colour: dark blue in light mode (stays light in dark mode so it remains readable) */
+:root{--heading:#0a1f44}
+@media (prefers-color-scheme:dark){:root{--heading:#e9efec}}
+h1,.brand,.albumhead h2{color:var(--heading)}
+
+/* Album tile titles: dark blue text on a light fade so it reads on any cover photo */
+.ameta{background:linear-gradient(rgba(255,255,255,.92) 35%,rgba(255,255,255,0))}
+.atitle{color:#0a1f44;text-shadow:none}
+.acount{background:#0a1f44;color:#fff}
