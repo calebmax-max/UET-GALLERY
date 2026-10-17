@@ -45,7 +45,8 @@
 
   /* ---------- Albums (sub-folders of images/) ---------- */
   if (items.some((i) => i.album)) items.forEach((i) => { i.album = i.album || "Other"; });
-  const albums = [...new Set(items.map((i) => i.album).filter(Boolean))];
+  const albums = [...new Set(items.map((i) => i.album).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const hasAlbums = albums.length > 0;
   const subtitle = $("#sub");
   const countText = (n) => n + (n === 1 ? " photo" : " photos");
