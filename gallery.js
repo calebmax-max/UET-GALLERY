@@ -2,7 +2,6 @@
   const $ = (s) => document.querySelector(s);
   const grid = $("#grid"), albumsEl = $("#albums"), head = $("#albumHead"), status = $("#status"), box = $("#lightbox");
   const lbImg = $("#lbImg"), lbSpin = $("#lbSpin"), lbErr = $("#lbErr");
-  const MAINTENANCE = true;   // set to false when editing is done
   $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Header motion ---------- */
@@ -30,6 +29,12 @@
     });
   }, { passive: true });
 
+  // The on/off switch lives in status.json, fetched fresh every time (never cached)
+  let MAINTENANCE = false;
+  try {
+    const sr = await fetch("status.json?t=" + Date.now(), { cache: "no-store" });
+    if (sr.ok) MAINTENANCE = (await sr.json()).maintenance === true;
+  } catch (e) { /* if status.json is missing or unreadable, show the gallery */ }
   if (MAINTENANCE) {
     $("#maint").hidden = false;
     status.hidden = true;
