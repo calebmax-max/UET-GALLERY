@@ -104,10 +104,9 @@ dialog::backdrop{background:transparent}
   border-radius:22px;background:var(--surface);color:var(--ink);text-decoration:none;isolation:isolate;
   box-shadow:0 12px 32px rgba(10,31,68,.08);transition:transform .25s,box-shadow .25s}
 .acard:hover,.acard:focus-visible{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
-.apreview{display:grid;grid-template-columns:1.45fr 1fr;grid-template-rows:1fr 1fr;height:290px;gap:4px;background:var(--ph)}
+.apreview{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);aspect-ratio:1.55;height:auto;gap:4px;background:var(--ph)}
 .apreview-img{display:block;width:100%;height:100%;object-fit:cover;background:var(--ph);opacity:0;transition:opacity .3s,transform .45s}
 .apreview-img.ready{opacity:1}
-.preview-1{grid-row:1 / 3}
 .acard:hover .apreview-img,.acard:focus-visible .apreview-img{transform:scale(1.035)}
 .ameta{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 14px;padding:22px 24px 24px;background:var(--surface)}
 .aeyebrow{grid-column:1 / -1;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
@@ -143,6 +142,6 @@ h1,.brand,.albumhead h2{color:var(--heading)}
 @media (max-width:600px){
   .albums{grid-template-columns:1fr;gap:16px}
   .acard{min-height:0}
-  .apreview{height:230px}
+  .apreview{aspect-ratio:1.35}
   .ameta{padding:18px 20px 20px}
 }

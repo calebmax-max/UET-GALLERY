@@ -59,7 +59,7 @@
     a.setAttribute("aria-label", "Open " + name + ", " + countText(list.length));
 
     const preview = document.createElement("span"); preview.className = "apreview";
-    const preferredPreviewFiles = ["photo-050.webp", "photo-200.webp", "photo-250.webp", "photo-525.webp"];
+    const preferredPreviewFiles = ["photo-069.webp", "photo-036.webp", "photo-136.webp", "photo-162.webp"];
     const preferred = preferredPreviewFiles.map((file) => list.find((it) => it.thumb.endsWith("/" + file))).filter(Boolean);
     const previews = preferred.length === 4 ? preferred : list.slice(0, 4);
     previews.forEach((it, i) => {
