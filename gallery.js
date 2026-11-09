@@ -2,6 +2,7 @@
   const $ = (s) => document.querySelector(s);
   const grid = $("#grid"), albumsEl = $("#albums"), head = $("#albumHead"), status = $("#status"), box = $("#lightbox");
   const lbImg = $("#lbImg"), lbSpin = $("#lbSpin"), lbErr = $("#lbErr");
+  const MAINTENANCE = true;   // set to false when editing is done
   $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Header motion ---------- */
@@ -28,6 +29,13 @@
       lastY = y; ticking = false;
     });
   }, { passive: true });
+
+  if (MAINTENANCE) {
+    $("#maint").hidden = false;
+    status.hidden = true;
+    $("#sub").textContent = "The gallery is being updated. Please check back soon.";
+    return;   // images.json is never fetched, no albums or photos are built
+  }
 
   let items;
   try {

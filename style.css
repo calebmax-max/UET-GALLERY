@@ -145,3 +145,18 @@ h1,.brand,.albumhead h2{color:var(--heading)}
   .apreview{aspect-ratio:1.35}
   .ameta{padding:18px 20px 20px}
 }
+
+/* Editing-in-progress screen */
+.maint{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
+  padding:56px 20px;border:1px solid var(--line);border-radius:22px;background:var(--surface)}
+.maint h2{margin:0;font-size:clamp(1.5rem,4vw,2.1rem);color:var(--heading)}
+.maint p{margin:0;max-width:44ch;color:var(--muted)}
+.maint-icon{font-size:3rem;transform-origin:20% 80%;animation:write 1.6s ease-in-out infinite}
+@keyframes write{0%,100%{transform:rotate(-12deg) translateX(-6px)}50%{transform:rotate(8deg) translateX(8px)}}
+.dots i{font-style:normal;display:inline-block;animation:blink 1.4s infinite both}
+.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.15}40%{opacity:1}}
+.maint-bar{width:min(320px,80%);height:10px;margin-top:18px;border-radius:999px;overflow:hidden;background:var(--ph)}
+.maint-bar span{display:block;width:40%;height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,var(--accent),#7be0a8);animation:slide 1.8s ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
