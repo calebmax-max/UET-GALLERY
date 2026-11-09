@@ -53,17 +53,31 @@
   const albumHash = () => (hasAlbums && album ? "#album/" + encodeURIComponent(album) : "");
 
   albums.forEach((name) => {
-    const list = items.filter((i) => i.album === name), cover = list.find((i) => i.cover) || list[0];
+    const list = items.filter((i) => i.album === name);
     const a = document.createElement("a");
     a.className = "acard"; a.href = "#album/" + encodeURIComponent(name);
-    const img = new Image();
-    img.width = cover.w; img.height = cover.h; img.alt = ""; img.loading = "lazy"; img.decoding = "async";
-    img.onload = () => img.classList.add("ready");
-    img.src = cover.thumb;
-    const t = document.createElement("span"); t.className = "atitle"; t.textContent = name;
-    const n = document.createElement("span"); n.className = "acount"; n.textContent = countText(list.length);
-    const meta = document.createElement("span"); meta.className = "ameta"; meta.append(t, n);
-    a.append(meta, img);
+    a.setAttribute("aria-label", "Open " + name + ", " + countText(list.length));
+
+    const preview = document.createElement("span"); preview.className = "apreview";
+    const preferredPreviewFiles = ["photo-050.webp", "photo-200.webp", "photo-250.webp", "photo-525.webp"];
+    const preferred = preferredPreviewFiles.map((file) => list.find((it) => it.thumb.endsWith("/" + file))).filter(Boolean);
+    const previews = preferred.length === 4 ? preferred : list.slice(0, 4);
+    previews.forEach((it, i) => {
+      const img = new Image();
+      img.className = "apreview-img preview-" + (i + 1);
+      img.width = it.w; img.height = it.h; img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+      img.onload = () => img.classList.add("ready");
+      img.src = it.thumb;
+      preview.appendChild(img);
+    });
+
+    const meta = document.createElement("span"); meta.className = "ameta";
+    const eyebrow = document.createElement("span"); eyebrow.className = "aeyebrow"; eyebrow.textContent = "Photo album";
+    const title = document.createElement("span"); title.className = "atitle"; title.textContent = name;
+    const count = document.createElement("span"); count.className = "acount"; count.textContent = countText(list.length);
+    const action = document.createElement("span"); action.className = "aview"; action.textContent = "Open album  →";
+    meta.append(eyebrow, title, count, action);
+    a.append(preview, meta);
     albumsEl.appendChild(a);
   });
 

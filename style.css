@@ -99,15 +99,21 @@ dialog::backdrop{background:transparent}
 
 /* Album landing page */
 [hidden]{display:none!important}
-.albums{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-.acard{display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:14px;
-  background:var(--surface);color:var(--ink);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.albums{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:24px}
+.acard{position:relative;display:block;min-height:430px;overflow:hidden;border:1px solid color-mix(in srgb,var(--line) 80%,transparent);
+  border-radius:22px;background:var(--surface);color:var(--ink);text-decoration:none;isolation:isolate;
+  box-shadow:0 12px 32px rgba(10,31,68,.08);transition:transform .25s,box-shadow .25s}
 .acard:hover,.acard:focus-visible{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
-.ameta{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.atitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-size:1.1rem}
-.acount{flex:none;padding:3px 10px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.85rem}
-.acard img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;background:var(--ph);opacity:0;transition:opacity .3s}
-.acard img.ready{opacity:1}
+.apreview{display:grid;grid-template-columns:1.45fr 1fr;grid-template-rows:1fr 1fr;height:290px;gap:4px;background:var(--ph)}
+.apreview-img{display:block;width:100%;height:100%;object-fit:cover;background:var(--ph);opacity:0;transition:opacity .3s,transform .45s}
+.apreview-img.ready{opacity:1}
+.preview-1{grid-row:1 / 3}
+.acard:hover .apreview-img,.acard:focus-visible .apreview-img{transform:scale(1.035)}
+.ameta{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 14px;padding:22px 24px 24px;background:var(--surface)}
+.aeyebrow{grid-column:1 / -1;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.atitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:800;font-size:clamp(1.35rem,2.5vw,1.75rem);letter-spacing:-.02em}
+.acount{justify-self:end;padding:5px 10px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.82rem;font-weight:600}
+.aview{grid-column:1 / -1;margin-top:10px;color:var(--accent);font-size:.9rem;font-weight:700}
 .albumhead{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px}
 .albumhead h2{margin:0;font-size:1.5rem;outline:none}
 #albumCount{color:var(--muted)}
@@ -129,22 +135,14 @@ dialog::backdrop{background:transparent}
 }
 @media (min-width:1800px){:root{--maxw:1500px}html{font-size:18px}}
 
-/* Square album tiles: cover fills the whole tile, title and count on top */
-.acard{position:relative;aspect-ratio:1/1;padding:0;gap:0;overflow:hidden;border:0;background:var(--ph)}
-.acard img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;border-radius:0;transition:opacity .3s,transform .4s}
-.acard:hover img,.acard:focus-visible img{transform:scale(1.05)}
-.ameta{position:absolute;top:0;left:0;right:0;z-index:1;padding:12px;color:#fff;
-  background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,0))}
-.atitle{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
-.acount{background:rgba(255,255,255,.22);color:#fff}
-@media (max-width:600px){.ameta{padding:8px}.atitle{font-size:.95rem}}
-
 /* Heading colour: dark blue in light mode (stays light in dark mode so it remains readable) */
 :root{--heading:#0a1f44}
 @media (prefers-color-scheme:dark){:root{--heading:#e9efec}}
 h1,.brand,.albumhead h2{color:var(--heading)}
 
-/* Album tile titles: dark blue text on a light fade so it reads on any cover photo */
-.ameta{background:linear-gradient(rgba(255,255,255,.92) 35%,rgba(255,255,255,0))}
-.atitle{color:#0a1f44;text-shadow:none}
-.acount{background:#0a1f44;color:#fff}th e lor fkflrrhohaordcbxb , ,
+@media (max-width:600px){
+  .albums{grid-template-columns:1fr;gap:16px}
+  .acard{min-height:0}
+  .apreview{height:230px}
+  .ameta{padding:18px 20px 20px}
+}
