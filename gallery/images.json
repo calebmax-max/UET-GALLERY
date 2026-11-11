@@ -1,5 +1,15 @@
 [
   {
+    "full": "gallery/full/photo-883.webp",
+    "thumb": "gallery/thumbs/photo-883.webp",
+    "w": 500,
+    "h": 333,
+    "title": "Photo 883",
+    "src": "AGM/first-agm.jpeg",
+    "size": 438455,
+    "album": "AGM"
+  },
+  {
     "full": "gallery/full/photo-580.webp",
     "thumb": "gallery/thumbs/photo-580.webp",
     "w": 500,
@@ -3018,14 +3028,5 @@
     "src": "AGM/WhatsApp Image 2026-11-11 at 20.44.45.jpeg",
     "size": 80660,
     "album": "AGM"
-  },
-  {
-    "full": "gallery/full/photo-882.webp",
-    "thumb": "gallery/thumbs/photo-882.webp",
-    "w": 500,
-    "h": 333,
-    "title": "Photo 882",
-    "src": "q41.png",
-    "size": 6572600
   }
 ]

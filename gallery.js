@@ -73,8 +73,10 @@
 
     const preview = document.createElement("span"); preview.className = "apreview";
     const preferredPreviewFiles = ["photo-069.webp", "photo-036.webp", "photo-136.webp", "photo-162.webp"];
+    const isFirst = (it) => /^first/i.test((it.src || "").split("/").pop());
     const preferred = preferredPreviewFiles.map((file) => list.find((it) => it.thumb.endsWith("/" + file))).filter(Boolean);
-    const previews = preferred.length === 4 ? preferred : list.slice(0, 4);
+    const four = preferred.length === 4 ? preferred : list.slice(0, 4);
+    const previews = [...list.filter(isFirst).slice(0, 1), ...four.filter((it) => !isFirst(it))].slice(0, 4);
     previews.forEach((it, i) => {
       const img = new Image();
       img.className = "apreview-img preview-" + (i + 1);

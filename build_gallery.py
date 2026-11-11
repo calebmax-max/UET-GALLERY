@@ -101,6 +101,9 @@ for it in items:
         if covers.get(it["album"]) == fname or Path(fname).stem.lower().startswith("cover"):
             it["cover"] = True
 
+# Pin: any file whose name starts with "first" goes to the very front of the list
+items.sort(key=lambda it: not Path(it.get("src", "")).stem.lower().startswith("first"))
+
 removed = 0
 if PRUNE:
     kept = [it for it in items if it.get("src") in present]
